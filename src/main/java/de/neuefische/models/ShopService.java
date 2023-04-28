@@ -60,7 +60,7 @@ public class ShopService {
         orderRepo.getAllOrders();
     }
 
-    public void getOrderByIdService(String searchId){
+    public void getOrderById_Service(String searchId){
         orderRepo.getOrderById(searchId);
     }
 

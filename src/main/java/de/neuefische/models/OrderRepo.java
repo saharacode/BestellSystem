@@ -51,6 +51,10 @@ public class OrderRepo {
             currentStr = "Order-ID: " + order.getOrderId() + ", Products: " + order.getOrderProducts();
             System.out.println(currentStr);
         }
+
+        if (repoOrders.isEmpty()){
+            System.out.println("There are no orders yet.");
+        }
         return currentStr;
     }
 
@@ -58,7 +62,7 @@ public class OrderRepo {
          for (String key :repoOrders.keySet()) {
             if (key.equals(searchId)){
                 Order order = repoOrders.get(key);
-                String currentStr = "ID: " + order.getOrderId() + ", Products: " + order.getOrderProducts();
+                String currentStr = "Order-ID: " + order.getOrderId() + ", Products: " + order.getOrderProducts();
                 System.out.println(currentStr);
                 return order;
             }
