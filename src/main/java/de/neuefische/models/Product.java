@@ -45,6 +45,7 @@ public class Product {
 
 
 
+
     // get/set
     public String getProductId() {
         return productId;

@@ -1,6 +1,7 @@
 package de.neuefische.models;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class ProductRepo {
@@ -38,6 +39,29 @@ public class ProductRepo {
         return Objects.hash(repoProducts);
     }
 
+    public String getAllProducts(){
+        String currentStr = "";
+        for (String key :repoProducts.keySet()) {
+            Product pr = repoProducts.get(key);
+            currentStr = "ID: " + pr.getProductId() + ", Product: " + pr.getProductName();
+            System.out.println(currentStr);
+        }
+        return currentStr;
+    }
+
+    public Product getProductById(String searchId) {
+        for (String key :repoProducts.keySet()) {
+            if (key.equals(searchId)){
+                Product pr = repoProducts.get(key);
+                String currentStr = "ID: " + pr.getProductId() + ", Product: " + pr.getProductName();
+                System.out.println(currentStr);
+                return pr;
+            }
+        }
+        throw new NoSuchElementException();
+
+    }
+
 
 
 
@@ -49,4 +73,6 @@ public class ProductRepo {
     public void setRepoProducts(Map<String, Product> repoProducts) {
         this.repoProducts = repoProducts;
     }
+
+
 }
