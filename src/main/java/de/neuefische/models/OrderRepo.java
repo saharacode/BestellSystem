@@ -43,6 +43,15 @@ public class OrderRepo {
         return repoOrders.get(newOrder.getOrderId());
     }
 
+    public String getAllOrders() {
+        String currentStr = "";
+        for (String key :repoOrders.keySet()) {
+            Order order = repoOrders.get(key);
+            currentStr = "Order-ID: " + order.getOrderId() + ", Product: " + order.getOrderProducts();
+            System.out.println(currentStr);
+        }
+        return currentStr;
+    }
 
 
 
@@ -54,6 +63,7 @@ public class OrderRepo {
     public void setRepoOrders(Map<String, Order> repoOrders) {
         this.repoOrders = repoOrders;
     }
+
 
 
 }
