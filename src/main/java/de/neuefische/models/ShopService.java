@@ -20,7 +20,7 @@ public class ShopService {
 
 
 
-    // methods
+    // standard methods
     @Override
     public String toString() {
         return "ShopService{" +
@@ -43,7 +43,26 @@ public class ShopService {
     }
 
 
+    // implemented methods
+    public void getAllProducts_Service(){
+        productRepo.getAllProducts();
+    }
 
+    public void getProductById_Service(String searchId){
+        productRepo.getProductById(searchId);
+    }
+
+    public void addOrder_Service(Order newOrder){
+        orderRepo.addOrder(newOrder);
+    }
+
+    public void getAllOrders_Service(){
+        orderRepo.getAllOrders();
+    }
+
+    public void getOrderByIdService(String searchId){
+        orderRepo.getOrderById(searchId);
+    }
 
 
 
