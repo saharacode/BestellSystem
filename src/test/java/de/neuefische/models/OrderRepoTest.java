@@ -58,7 +58,7 @@ class OrderRepoTest {
         orderRepo.addOrder(order0);
         orderRepo.addOrder(order1);
 
-        String expectedStr = "Order-ID: 1, Product: " + order1.getOrderProducts();
+        String expectedStr = "Order-ID: 1, Products: " + order1.getOrderProducts();
 
         // when
         String actualStr = orderRepo.getAllOrders();
