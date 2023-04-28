@@ -38,6 +38,11 @@ public class OrderRepo {
         return Objects.hash(repoOrders);
     }
 
+    public Order addOrder(Order newOrder) {
+        repoOrders.put(newOrder.getOrderId(),newOrder);
+        return repoOrders.get(newOrder.getOrderId());
+    }
+
 
 
 
@@ -49,4 +54,6 @@ public class OrderRepo {
     public void setRepoOrders(Map<String, Order> repoOrders) {
         this.repoOrders = repoOrders;
     }
+
+
 }
