@@ -1,6 +1,7 @@
 package de.neuefische.models;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class OrderRepo {
@@ -47,10 +48,22 @@ public class OrderRepo {
         String currentStr = "";
         for (String key :repoOrders.keySet()) {
             Order order = repoOrders.get(key);
-            currentStr = "Order-ID: " + order.getOrderId() + ", Product: " + order.getOrderProducts();
+            currentStr = "Order-ID: " + order.getOrderId() + ", Products: " + order.getOrderProducts();
             System.out.println(currentStr);
         }
         return currentStr;
+    }
+
+    public Order getOrderById(String searchId) {
+         for (String key :repoOrders.keySet()) {
+            if (key.equals(searchId)){
+                Order order = repoOrders.get(key);
+                String currentStr = "ID: " + order.getOrderId() + ", Products: " + order.getOrderProducts();
+                System.out.println(currentStr);
+                return order;
+            }
+        }
+        throw new NoSuchElementException();
     }
 
 

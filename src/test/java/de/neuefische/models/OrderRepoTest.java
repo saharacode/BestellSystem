@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,8 +55,8 @@ class OrderRepoTest {
         OrderRepo orderRepo = new OrderRepo(orderRepoMap);
 
         // add Orders to OrderRepo
-        Order actualAddedOrder0 =orderRepo.addOrder(order0);
-        Order actualAddedOrder1 =orderRepo.addOrder(order1);
+        orderRepo.addOrder(order0);
+        orderRepo.addOrder(order1);
 
         String expectedStr = "Order-ID: 1, Product: " + order1.getOrderProducts();
 
@@ -66,5 +67,56 @@ class OrderRepoTest {
         assertEquals(expectedStr, actualStr);
     }
 
+    @Test
+    public void getOrderById_returnSpecificOrder(){
+        // given
+        String searchId = "0";
+
+        // create order, which should be added to OrderRepo:
+        Map<String,Product> productMap = new HashMap<>();
+        productMap.put(pr0.getProductId(), pr0);
+        productMap.put(pr1.getProductId(),pr1);
+        Order newOrder = new Order("0",productMap);
+
+        // create OrderRepo which contains empty Map
+        Map<String,Order> orderRepoMap = new HashMap<>();
+        OrderRepo orderRepo = new OrderRepo(orderRepoMap);
+
+        // add Orders to OrderRepo
+        orderRepo.addOrder(newOrder);
+
+        // when
+        Order actualOrder = orderRepo.getOrderById(searchId);
+
+        // then
+        assertEquals(newOrder, actualOrder);
+    }
+
+    @Test
+    public void getOrderById_throwExceptionIfNotExistent(){
+        // given
+        String searchId = "1";
+
+        // create order, which should be added to OrderRepo:
+        Map<String,Product> productMap = new HashMap<>();
+        productMap.put(pr0.getProductId(), pr0);
+        productMap.put(pr1.getProductId(),pr1);
+        Order newOrder = new Order("0",productMap);
+
+        // create OrderRepo which contains empty Map
+        Map<String,Order> orderRepoMap = new HashMap<>();
+        OrderRepo orderRepo = new OrderRepo(orderRepoMap);
+
+        // add Orders to OrderRepo
+        orderRepo.addOrder(newOrder);
+
+        // when/then
+        try {
+            Order actualOrder = orderRepo.getOrderById(searchId);
+            fail();
+        } catch (NoSuchElementException e){
+            assertTrue(true);
+        }
+    }
 
 }
